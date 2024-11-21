@@ -20,7 +20,7 @@ async function getRegDetails(regid: any) {
 export async function sendEntryPass(client: Client, message: WAWebJS.Message) {
   const text = message.body;
 
-  if (text.includes("PASS")) {
+  if (text.includes("PASS") && text.length < 9) {
     try {
       const sender = message.from;
       const regId = text.replace("PASS", "").trim();
