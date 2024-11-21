@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style type="text/css">
+        body{
+            min-height: 100vh;
+            max-height: 100vh;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #008169;
+        }
+        .container{
+            background-color: #E5DDD5;
+            filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.35));
+            padding: 2rem 10rem; 
+            border-radius: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .h1{
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .reload{
+            margin-top: 20px;
+            padding: 12px 30px;
+            box-shadow: 0px 4px  10px rgba(0, 0, 0, 0.25);
+           outline: none;
+           border: none;
+            border-radius: 5px;
+            background-color: #008169;
+            color: #fff;
+            cursor: pointer;
+        }
+        #qrcode{
+            padding: 1.3rem;
+            background-color: #fff;
+            border-radius: 2rem;
+        }
+    </style>
+</head>
+<body>
+   <section class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" height="50px" alt="">
+    <div class="h1">
+       
+        Z-WA Authentication</div>
+    <div style="color: #939393;">Powered by <a href="https://ziqx.cc">ziqx.cc</a> </div>
+    <div id="qrcode" style="margin-top: 10px;"></div>
+    <div>
+        <button class="reload" onclick="reload()">Reload</button>
+    </div>
+   </section>
+</body>
+<script>
+
+    function reload(){
+        window.location.reload();
+    }
+    setInterval(function () {
+        reload();
+    }, 10000);
+  
+  function start(){
+    const qrEl = document.getElementById("qrcode");
+    const qrValue = '<%= qr %>';
+    if(qrValue==="CONNECTED"){
+        alert("Whatsapp Connected");
+        qrEl.innerHTML = "Whatsapp Connected"
+        return;
+    }
+    if(qrValue.length<10){
+        
+        qrEl.innerHTML = "Invalid QR Value"
+        return;
+    }
+
+    // Generate QR code
+    const qrcode = new QRCode(qrEl, {
+        text: qrValue,
+        width: 350,  // width of the QR code
+        height: 350  // height of the QR code
+    });
+  }
+  start();
+</script>
+</html>
