@@ -33,7 +33,7 @@ export async function sendEntryPass(client: Client, message: WAWebJS.Message) {
         const emirate = data.emirate;
 
         const response = await fetch(
-          `https://pass.uaesahithyotsav.com/generate-pass?name=${name}&emirate=${emirate}&id=${text}`
+          `http://localhost:3011/generate-pass?name=${name}&emirate=${emirate}&id=${text}`
         );
 
         // Check if the response is OK
